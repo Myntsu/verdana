@@ -16,10 +16,6 @@
   box-sizing: border-box;
 }
 
-*:hover {
-  /* outline: 3px solid red; */
-}
-
 html,
 body {
   height: 100vh;

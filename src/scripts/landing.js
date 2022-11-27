@@ -49,4 +49,10 @@ closeAbout.addEventListener("click", () => {
   modalAbout.close();
 });
 
-
+modal.forEach((modal) => {
+  modal.addEventListener("click", (e) => {
+    if (e.target.class != "modal-content") {
+      modal.close();
+    }
+  });
+});
