@@ -1,0 +1,502 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap");
+
+:root {
+  --dark: 0, 0%, 7%;
+  --light: 150, 4%, 90%;
+
+  --main: 0, 85%, 55%;
+  --main-contrast: 0, 85%, 75%;
+
+  --text: 0, 0%, 91%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+*:hover {
+  /* outline: 3px solid red; */
+}
+
+html,
+body {
+  height: 100vh;
+}
+
+body {
+  margin: 0;
+  color: hsl(var(--text));
+  background-color: hsl(var(--dark));
+  line-height: 1.5;
+  font-size: 1rem;
+  font-family: "DM Sans", sans-serif;
+  font-weight: 400;
+}
+
+main {
+  width: 100%;
+  height: 100%;
+
+  position: relative;
+}
+
+h1,
+h2,
+h3,
+p {
+  font-size: 1rem;
+  margin: 0;
+}
+
+button {
+  font-family: inherit;
+}
+
+/* utility classes */
+.glow-container {
+  box-shadow: 0 0 7px 1px hsl(var(--light), 25%);
+}
+
+.tap {
+  width: fit-content;
+  padding: 0 .5rem;
+  color: hsl(var(--text));
+  background-color: hsl(240, 90%, 68%, .5);
+  border-radius: .25rem;
+}
+
+.flex-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Main grid */
+.main-grid {
+  --animation-delay: 200ms;
+
+  display: grid;
+  grid-template-areas:
+    "a b c d"
+    "l verdana verdana e"
+    "k verdana verdana f"
+    "j i h g";
+  grid-template-columns: 220px 25% auto 220px;
+  grid-template-rows: repeat(autofill, 25%);
+  gap: 0.5rem;
+
+  height: 100vh;
+}
+
+@media only screen and (max-width: 990px) {
+  .main-grid {
+    grid-template-columns: auto;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .main-grid {
+    --animation-delay: 0ms;
+
+    grid-template-areas:
+      "b b b c"
+      "verdana verdana verdana verdana"
+      "verdana verdana verdana verdana"
+      "i h h h";
+    grid-template-columns: auto auto;
+  }
+
+  .card:nth-child(1) {
+    display: none;
+  }
+
+  .card:nth-child(4) {
+    display: none;
+  }
+
+  .card:nth-child(5) {
+    display: none;
+  }
+
+  .card:nth-child(6) {
+    display: none;
+  }
+
+  .card:nth-child(7) {
+    display: none;
+  }
+
+  .card:nth-child(10) {
+    display: none;
+  }
+
+  .card:nth-child(11) {
+    display: none;
+  }
+
+  .card:nth-child(12) {
+    display: none;
+  }
+}
+
+.card {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 0.5em;
+
+  animation: cardsAnimating 1000ms ease-in-out;
+  animation-fill-mode: backwards;
+
+  text-align: center;
+  overflow: hidden;
+  overflow-wrap: break-word;
+}
+
+.card:has(.link-button):is(:hover, :focus, :focus-within) {
+  outline: 1px solid hsl(0, 0%, 92%, .15);
+  box-shadow: 0 0 5px 1px hsl(var(--light), 25%);
+}
+
+@keyframes cardsAnimating {
+  from {
+    opacity: 0;
+    scale: 0.3;
+  }
+
+  to {
+    opacity: 1;
+    scale: 1;
+  }
+}
+
+.card > * {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+}
+
+.link-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .5rem;
+  width: 100%;
+  height: 100%;
+  border-radius: 0.5rem;
+  color: hsl(var(--text));
+  background-color: hsl(0, 0%, 11%, .5);
+  border: none;
+  font-size: clamp(1rem, 0.4286rem + 2.8571vw, 2.5rem);
+  text-decoration: none;
+  position: relative;
+  cursor: pointer;
+}
+
+.link-button:is(:hover, :focus, :focus-within) {
+  scale: 1.1;
+  transition: scale 300ms ease-in;
+}
+
+/* Social links */
+.social-links {
+  display: flex;
+  justify-content: initial;
+  align-items: initial;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  width: 100%;
+  height: 100%;
+  font-size: clamp(1rem, 0.4286rem + 2.8571vw, 2rem);
+}
+
+.social-links a {
+  width: calc(50% - 0.25rem);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: hsl(var(--text));
+  text-decoration: none;
+  border-radius: 0.5rem;
+}
+
+.social-links a:is(:hover, :focus, :focus-within) {
+  color: inherit;
+  filter: grayscale(30%);
+  outline: 1px solid white;
+  outline-offset: -2px;
+}
+
+@media only screen and (min-width: 1300px) {
+  .social-links a:is(:hover, :focus, :focus-within) i {
+    visibility: hidden;
+    position: absolute;
+  }
+
+  .social-links > a::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    font-size: clamp(0.5rem, 0.4286rem + 2.8571vw, 1.25rem);
+    font-weight: 700;
+
+    opacity: 0;
+    filter: blur(2px);
+    visibility: hidden;
+    transition: all 400ms ease-in;
+  }
+
+  .social-links > a:is(:hover, :focus, :focus-within)::after {
+    content: attr(data-social);
+    opacity: 1;
+    filter: blur(0px);
+    visibility: visible;
+  }
+}
+
+@media only screen and (max-width: 990px) {
+  .social-links {
+    flex-direction: row;
+  }
+
+  .social-links a {
+    flex: 1 0 25%;
+  }
+}
+
+@media only screen and (max-width: 650px) {
+  .social-links {
+    gap: 0.25rem;
+  }
+
+  .social-links a {
+    flex: 1 0 25%;
+  }
+}
+
+.twitter {
+  background-color: rgba(42, 146, 238, 0.85);
+}
+
+.instagram {
+  background-color: rgba(238, 44, 44, 0.85);
+}
+
+.facebook {
+  background-color: rgba(61, 61, 207, 0.85);
+}
+
+.deviantart {
+  background-color: rgba(36, 243, 147, 0.85);
+}
+
+.pixiv {
+  background-color: rgba(31, 31, 31, 0.85);
+}
+
+.kofi {
+  background-color: rgba(250, 147, 36, 0.85);
+}
+
+.card > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  cursor: pointer;
+}
+
+.card > img:is(:hover, :focus, :focus-within) {
+  scale: 1.2;
+  transition: 500ms ease;
+}
+
+.card:nth-child(1) {
+  grid-area: a;
+  animation-delay: calc(1 * var(--animation-delay));
+}
+
+.card:nth-child(2) {
+  grid-area: b;
+  animation-delay: calc(2 * var(--animation-delay));
+}
+
+.card:nth-child(3) {
+  grid-area: c;
+  animation-delay: calc(3 * var(--animation-delay));
+}
+
+.card:nth-child(4) {
+  grid-area: d;
+  animation-delay: calc(4 * var(--animation-delay));
+}
+
+.card:nth-child(5) {
+  grid-area: e;
+  animation-delay: calc(5 * var(--animation-delay));
+}
+
+.card:nth-child(6) {
+  grid-area: f;
+  animation-delay: calc(6 * var(--animation-delay));
+}
+
+.card:nth-child(7) {
+  grid-area: g;
+  animation-delay: calc(7 * var(--animation-delay));
+}
+
+.card:nth-child(8) {
+  grid-area: h;
+  animation-delay: calc(8 * var(--animation-delay));
+}
+
+.card:nth-child(9) {
+  grid-area: i;
+  animation-delay: calc(9 * var(--animation-delay));
+}
+
+.card:nth-child(10) {
+  grid-area: j;
+  animation-delay: calc(10 * var(--animation-delay));
+}
+
+.card:nth-child(11) {
+  grid-area: k;
+  animation-delay: calc(11 * var(--animation-delay));
+}
+
+.card:nth-child(12) {
+  grid-area: l;
+  animation-delay: calc(12 * var(--animation-delay));
+}
+
+.card:last-child {
+  grid-area: verdana;
+  animation-delay: calc(13 * var(--animation-delay));
+}
+
+.popup-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+  z-index: 999;
+
+  display: none;
+  background-color: hsl(0, 0%, 10%, .8);
+  backdrop-filter: blur(2px);
+}
+
+.img-wrapper {
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+
+  width: 80vh;
+  position: relative;
+}
+
+.popup-image img {
+  width: 100%;
+  height: auto;
+  border-radius: .5rem;
+  user-select: none;
+  z-index: 1000;
+}
+
+.popup-image span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  position: absolute;
+  top: .5rem;
+  right: .5rem;
+  padding: .75rem 1.1rem;
+  color: hsl(0, 0%, 25%);
+  background-color: hsl(0, 0%, 87%, .7);
+  border-radius: .5rem;
+  font-size: 2rem;
+  cursor: pointer;
+  user-select: none;
+  z-index: 1001;
+}
+
+.popup-image span:is(:hover, :focus, :focus-within) {
+  opacity: .7;
+}
+
+@media only screen and (max-width: 990px) {
+  .popup-image img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.card.verdana {
+  background-color: hsl(0, 0%, 11%, .5);
+  padding: 2rem;
+}
+
+.card.verdana h1 {
+  font-size: clamp(1rem, 0.1429rem + 4.2857vw, 4rem);
+}
+
+.headers-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal {
+  width: 100%;
+  max-width: 60ch;
+  color: hsl(var(--text));
+  background-color: hsl(0, 0%, 11%, .7);
+  border: none;
+  border-radius: .5rem;
+}
+
+.modal::backdrop {
+  background-color: hsl(0, 0%, 91%, .2);
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.modal button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  
+  margin-inline-start: auto;
+
+  color: hsl(var(--text));
+  background-color: unset;
+  border: none;
+  border-radius: .25rem;
+  text-transform: uppercase;
+  font-size: 2rem;
+  z-index: 1002;
+}
+
+.modal button:is(:hover, :focus, :focus-within) {
+  opacity: .5;
+}
+
+.modal button:is(:hover, :focus, :focus-within) {
+  opacity: .8;
+}
